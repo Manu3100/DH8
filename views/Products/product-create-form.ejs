@@ -1,0 +1,66 @@
+<%-include('../partials/head', {title: 'Product Add'})%> 
+
+<body>
+    <%-include('../partials/header')%>
+
+    <h2 class="apt">Agregar un nuevo producto</h2>
+
+    <div class="create_product">
+        <form class="formproduct" action="/productCreate" method="POST" enctype="multipart/form-data">
+
+            <div class="info_producto">
+                    <label class="label_producto" for="nombre">Nombre de Producto</label><br>
+                    <input class="info_box" type="text" name="nombre" placeholder="Ej: Comida para perros"><br><br>
+                    <% if(locals.errors && errors.nombre){%>
+                        <p style="color:red ;"><%= errors.nombre.msg %></p> <br>
+                         <% }%>
+
+                    <label class="label_producto" for="precio">Precio de Producto</label><br>
+                    <input class="info_box" type="number" name="precio" placeholder="Ej: 200"><br><br>
+                    <% if(locals.errors && errors.precio){%>
+                        <p style="color:red ;"><%= errors.precio.msg %></p> <br>
+                         <% }%>
+
+                    <label class="label_producto" for="descripcion">Descripcion de Producto</label><br>
+                    <textarea class="info_box" name="descripcion" rows="5" cols="33" placeholder="Descripción"></textarea><br><br>
+                    <% if(locals.errors && errors.descripcion){%>
+                        <p style="color:red ;"><%= errors.descripcion.msg %></p> <br>
+                         <% }%>
+            </div>
+
+            <div class="info_img">
+                <div class="form-input">
+                    <!-- Preview box-->
+                    <div class="preview">
+                        <img src="" alt="" id="image-preview">
+                    </div>
+                    <!--Input box-->
+                    <label for="image">Cargar Imagen</label>
+                    <input type="file" id="image" name="image" accept="image/*" onchange="showPreview(event);">
+
+                    <% if(locals.errors && errors.image){%>
+                        <p style="color:red ;"><%= errors.image.msg %></p> <br>
+                         <% }%>
+                </div>
+
+            </div>
+
+            <!-- Javascript-->
+            <script type="text/javascript">
+            function showPreview(event){
+                if(event.target.files.length > 0){
+                  var src = URL.createObjectURL(event.target.files[0]);
+                  var preview = document.getElementById("image-preview");
+                  preview.src = src;
+                  preview.style.display = "block";
+                }
+              }
+            </script>
+
+            <input type="submit" value="Agregar Producto" class="submitProduct"><br>
+        </form>
+    </div>
+    <%-include('../partials/footer')%>
+
+</body>
+</html>

@@ -1,0 +1,87 @@
+<%-include('../partials/head', {title: 'Product Add'})%> 
+
+<body>
+    <%-include('../partials/header')%>
+   
+    <h2>Estas viendo el producto: <%= p.nombre%></h2>
+
+    <main>
+        <div >
+            <div >
+                <div class="bannerPromo">
+                    <div id="contenedorPromo">
+                        <div class="textoBanner">ENVÍO <strong> GRATIS</strong>  POR COMPRAS SUPERIORES A $250.000</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <nav class="container" style="padding-top: 30px">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Producto</li>
+            </ol>
+        </nav>    
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div><img src="/img/products/<%= p.image%>" class="img-thumbnail" alt="bulldog-frances"></div>
+                </div>
+                <div class="col-md-6 mt">
+                    <div >
+                        <h1 id="product-title">Nombre: <%= p.nombre%></h1>
+                        <div class="proveedor">Proveedor: #</div>
+                        <div class="productId">ID: <%= p.id%></div>
+                        <div id="precio">Precio: $<%= p.precio%></div>
+                        <div>
+                            <div class="cantidades">
+                                <input type="number" class="input-qty" step="1" min="1" max="10" name="quantity" value="1" size="4" pattern="[0-9]*" inputmode="numeric" >
+                                <div>
+                                    <button type="button" class="boton-mas">
+                                        <i class="signo-mas">+</i>
+                                    </button>
+                                </div>
+                                <div>
+                                    <button type="button" class="boton-menos">
+                                        <i class="signo-menos">-</i>
+                                    </button>
+                                </div>
+                                <br>
+                            </div>
+                            <div class="d-grid gap-2 col-6 ">
+                                <button type="button" class="btn btn-primary agregar-carrito">
+                                    <span>COMPRAR</span>
+                                </button>
+                               
+                                   <a style="text-decoration: none;" class="btn btn-secondary" href="/productEdit/<%=p.id%>">Editar</a> 
+                                <form action="/delete/<%=p.id%>?_method=DELETE" method="POST"> 
+                                    <input type="submit" value="BORRAR" class="btn btn-danger">
+                                <!-- <a href="/" class="btn btn-danger">Borrar</a> -->
+                            </form>
+
+                            
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="descripcion-producto">
+                        <span>DESCRIPCIÓN</span>
+                    </div>
+
+                    <div>
+                        <p><%= p.descripcion%></p>
+                        
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    <%-include('../partials/footer')%>
+
+</body>
+</html>

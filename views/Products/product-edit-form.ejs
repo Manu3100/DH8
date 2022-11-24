@@ -1,0 +1,52 @@
+<%-include('../partials/head', {title: 'Product Edit'})%> 
+<body>
+    <%-include('../partials/header')%>
+
+    <h2 class="apt">Estás editando el producto: <%=p.nombre%></h2>
+
+    <div class="create_product">
+        <form class="formproduct" action="/productEdit/<%=p.id%>?_method=put" method="POST" enctype="multipart/form-data">
+            <div class="info_producto">
+                    <label class="label_producto" for="nombre">Nombre de Producto</label><br>
+                    <input class="info_box" type="text" name="nombre" value="<%=p.nombre%>"><br><br>
+
+                    <label class="label_producto" for="precio">Precio de Producto</label><br>
+                    <input class="info_box" type="number" name="precio" value="<%=p.precio%>"><br><br>
+
+                    <label class="label_producto" for="descripcion">Descripcion de Producto</label><br>
+                    <textarea class="info_box" name="descripcion" rows="5" cols="33" placeholder="Descripción"><%=p.descripcion%></textarea><br><br>
+            </div>
+
+            <div class="info_img">
+                <div class="form-input">
+                    <!-- Preview box-->
+                    <div class="preview">
+                        <img src="" alt="" id="image-preview">
+                    </div>
+                    <!--Input box-->
+                    <label for="imageEdit">Cargar Imagen</label>
+                    <input type="file"  name="imageEdit" id="imageEdit" accept="image/*" onchange="showPreview(event);">
+                </div>
+
+            </div>
+
+            <input type="submit" value="Editar Producto" class="submitProduct"><br>
+        </form>
+    </div>
+    <%-include('../partials/footer')%>
+
+
+ <!-- Javascript-->
+            <script type="text/javascript">
+            function showPreview(event){
+                if(event.target.files.length > 0){
+                var src = URL.createObjectURL(event.target.files[0]);
+                var preview = document.getElementById("image-preview");
+                preview.src = src;
+                preview.style.display = "block";
+                }
+            }
+            </script>
+
+</body>
+</html>

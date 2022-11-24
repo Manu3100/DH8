@@ -1,0 +1,23 @@
+[
+ {
+  "id": 1,
+  "nombreUsuario": "Julian Fernandez",
+  "emailUsuario": "juliant.fernandez0611@gmail.com",
+  "passwordUsuario": "$2a$10$GeUpvDU1rzgCaHyELV3Ak.mKE0SzSFn1l3dy0tLwXXz6iKI2MiCjC",
+  "imageProfile": "1668374470728me.jpg"
+ },
+ {
+  "id": 2,
+  "nombreUsuario": "Manuel Giovinazzo",
+  "emailUsuario": "m-giovinazzo@hotmail.com",
+  "passwordUsuario": "$2a$10$yHvhZxgfTNGOm5KCIasoOesalJa5XgcwNyIJIqAGuxgqIVfbKvfBe",
+  "imageProfile": "1668739043267blackrain.png"
+ },
+ {
+  "id": 3,
+  "nombreUsuario": "mateo",
+  "emailUsuario": "mateo@gmail.com",
+  "passwordUsuario": "$2a$10$8F3iDSq7638NRgi.uNnueeo9oP6wd6fTqRyXFCdknugJRKfdbeN.W",
+  "imageProfile": "1668739107652TODAY.jpg"
+ }
+]

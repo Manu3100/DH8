@@ -1,0 +1,51 @@
+<%-include('../partials/head', {title: 'Login'})%> 
+
+<body>
+    <%-include('../Partials/header')%>
+    <div class="form">
+
+		<div class="SignUp_form">
+            <img src="/img/logo.png" class="logo-myaccount">
+            <h2 class="title-login text-center">SignUp</h2>
+			<br>
+            <!-- <%//if(locals.errors){ %>
+                <% //for(let oneError in errors){ %>
+                <p style="color: red"><%= //errors[oneError].msg %> </p>
+            <% //}%>
+            <% //}%> -->
+            <form method="POST" action="/register" enctype="multipart/form-data">
+
+                <label for="nombreUsuario"></label><br>
+                <input type="text" placeholder="Nombre y Apellido" name="nombreUsuario" value="<%= locals.oldData ? locals.oldData.nombreUsuario : null %>"><br>
+                <% if(locals.errors && errors.nombreUsuario){%>
+                    <p style="color:red ;"><%= errors.nombreUsuario.msg %></p> <br>
+                     <% }%>
+
+                <label for="emailUsuario"></label><br>
+                <input type="email" placeholder="E-Mail" name="emailUsuario" value="<%= locals.oldData ? locals.oldData.emailUsuario : null %>"><br>
+                <% if(locals.errors && errors.emailUsuario){%>
+                    <p style="color:red ;"><%= errors.emailUsuario.msg %></p> <br>
+                     <% }%>
+
+                <label for="passwordUsuario"></label>
+                <input type="password" placeholder="Contraseña" name="passwordUsuario" value="<%= locals.oldData ? locals.oldData.passwordUsuario : null %>"><br>
+                <% if(locals.errors && errors.passwordUsuario){%>
+                    <p style="color:red ;"><%= errors.passwordUsuario.msg %></p> <br>
+                     <% }%>
+
+                <label for="imageProfile">Cargar Imagen de Perfil</label><br>
+                <input type="file" name="imageProfile">
+                <% if(locals.errors && errors.imageProfile){%>
+                    <p style="color:red ;"><%= errors.imageProfile.msg %></p> <br>
+                     <% }%>
+
+                <input type="submit" value="Registrarse" class="submit"><br>
+            </form>
+		</div>
+
+	</div>
+
+    
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+<%-include('../partials/head', {title: 'Product Detail'})%> 
+
+<body>
+    <%-include('../partials/header')%>
+
+    
+        <h2 class="text-center mt-5 mb-5 products-title">Productos</h2>
+        
+        <section class="container-fluid d-flex justify-content-around flex-wrap productos-destacados">
+            <% for(i = 0; i<p.length; i++) { %>   
+               <article class="product1">
+                <img src="/img/products/<%=p[i].image%>" alt=""> 
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="product1-title--description"> 
+                        
+                        <h3 class="pt-3"><%= p[i].nombre%></h3><br>
+                        <h5>id: <%= p[i].id %></h5>
+                        <h6>precio: $<%= p[i].precio%></h6>
+                        <p> descripcion:<%= p[i].descripcion %></p>
+                        <button href="#"><a href="#">Ver Producto</a></button>
+                    </div>
+                </div>
+               </article>
+               
+               
+               <%} %>
+    </section>
+  
+    </main>
+
+    <%-include('../partials/footer')%>
+    
+</body>
+</html>
