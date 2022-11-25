@@ -6,13 +6,13 @@ const bcryptjs = require('bcryptjs');
 
 let usersController = {
     index: (req, res) => {
-        res.render('users/MyAccount')
+        res.render('Users/MyAccount')
 },
     register: (req, res) => {
-        res.render('users/register')
+        res.render('Users/register')
         
 }, profile:(req,res)=>{
-    res.render('users/profile', {
+    res.render('Users/profile', {
         user: req.session.userLogged
     })
 },
@@ -20,7 +20,7 @@ let usersController = {
       const resultValidation = validationResult(req)
 
       if(resultValidation.errors.length > 0){
-        res.render('users/register', {
+        res.render('Users/register', {
             errors: resultValidation.mapped(),
             oldData: req.body
         })
@@ -28,7 +28,7 @@ let usersController = {
       let userInDB = User.findByField('emailUsuario', req.body.emailUsuario)
 
       if(userInDB){
-        return res.render('users/register',{
+        return res.render('Users/register',{
             errors: {
                 emailUsuario: {
                     msg: 'Este email ya esta registrado'
@@ -48,7 +48,7 @@ let usersController = {
 },
 
 login:(req,res)=>{
-    res.render('users/login')
+    res.render('Users/login')
 },
 loginProcess: (req,res)=>{
    let userToLogin = User.findByField('emailUsuario', req.body.emailUsuario)
@@ -60,7 +60,7 @@ loginProcess: (req,res)=>{
             req.session.userLogged = userToLogin;
         return res.redirect('/profile');
         }
-        return res.render('users/login', {
+        return res.render('Users/login', {
             errors:{
                 passwordUsuario: {
                     msg:'Las credenciales son incorrectas'
@@ -69,7 +69,7 @@ loginProcess: (req,res)=>{
         })
     }
 
-    return res.render('users/login',{
+    return res.render('Users/login',{
         errors:{
             emailUsuario: {
                 msg:'No se encuentra este Email'

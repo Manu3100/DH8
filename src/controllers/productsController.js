@@ -13,7 +13,7 @@ let productsController = {
     },
     
     create: (req,res) => {
-        res.render('products/product-create-form');
+        res.render('Products/product-create-form');
     },
     
     edit: (req,res) => {
@@ -26,12 +26,12 @@ let productsController = {
                 break;
             }
         }
-        res.render('products/product-edit-form',{ p: objProducto});
+        res.render('Products/product-edit-form',{ p: objProducto});
         
     },
     
     detail: (req, res) => {
-        res.render('products/productDetail', {p: products});
+        res.render('Products/productDetail', {p: products});
     },
     
     detailId: (req, res) => {
@@ -44,7 +44,7 @@ let productsController = {
                 break;
             }
         }
-        res.render('products/productId',{ p: objProducto});
+        res.render('Products/productId',{ p: objProducto});
     },
     
     store: (req, res) => {
@@ -56,7 +56,7 @@ let productsController = {
         //         oldData: req.body
         //     })
         if(resultValidation.errors.length > 0){
-            res.render('products/product-create-form', {
+            res.render('Products/product-create-form', {
                 errors: resultValidation.mapped()
             })
         }else{
