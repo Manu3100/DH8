@@ -19,5 +19,12 @@
   "emailUsuario": "mateo@gmail.com",
   "passwordUsuario": "$2a$10$8F3iDSq7638NRgi.uNnueeo9oP6wd6fTqRyXFCdknugJRKfdbeN.W",
   "imageProfile": "1668739107652TODAY.jpg"
+ },
+ {
+  "id": 4,
+  "nombreUsuario": "Manuel Giovinazzo",
+  "emailUsuario": "mg@gmail.com",
+  "passwordUsuario": "$2a$10$u.2qShkgpzVII/bkJ0JbA.U5ihqSBhd9xkoPZTqiB6md7M/fQ/R2u",
+  "imageProfile": "1669405122109IMG_20150320_215914.jpg"
  }
 ]

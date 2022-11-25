@@ -40,7 +40,7 @@ const uploadFile = multer({storage: configImage})
 
 router.get('/', productsController.index)
 
-router.get('/productCreate', guestMiddleware ,productsController.create)
+router.get('/productCreate', productsController.create)
 
 router.get('/productEdit/:id', productsController.edit)
 
