@@ -74,20 +74,37 @@ let productsController = {
         }
     },
     update: (req,res) => {
-        let idProducto = req.params.id;
-        let imageEdit = req.file.filename;
+        const resultValidation = validationResult(req)
 
-        for (let p of products){
-            if (idProducto == p.id){
-                p.nombre = req.body.nombre;
-                p.precio = req.body.precio;
-                p.descripcion = req.body.descripcion;
-                p.image = imageEdit;
-                break;
+        if(resultValidation.errors.length > 0){
+            let idProducto = req.params.id;
+            let objProducto;
+
+            for (let p of products){
+                if (idProducto == p.id){
+                    objProducto=p;
+                    break;
+                }
             }
+            res.render('Products/product-edit-form',{ p: objProducto, errors: resultValidation.mapped()});
+            
+        }else{
+
+            let idProducto = req.params.id;
+            let imageEdit = req.file.filename;
+
+            for (let p of products){
+                if (idProducto == p.id){
+                    p.nombre = req.body.nombre;
+                    p.precio = req.body.precio;
+                    p.descripcion = req.body.descripcion;
+                    p.image = imageEdit;
+                    break;
+                }
+                }
+            fs.writeFileSync(productsFilePath,JSON.stringify(products,null," "));
+            res.redirect('/');
         }
-        fs.writeFileSync(productsFilePath,JSON.stringify(products,null," "));
-        res.redirect('/');
     },
     delete: (req,res) => {
         let idProducto = req.params.id;
