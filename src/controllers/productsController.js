@@ -87,7 +87,7 @@ let productsController = {
                 }
             }
             res.render('Products/product-edit-form',{ p: objProducto, errors: resultValidation.mapped()});
-            
+
         }else{
 
             let idProducto = req.params.id;
@@ -108,12 +108,20 @@ let productsController = {
     },
     delete: (req,res) => {
         let idProducto = req.params.id;
-        
+        let pimagen;
+
+        for (let p of products){
+            if (idProducto == p.id){
+                pimagen=p.image;
+                break;
+            }
+        }
         let arrProductos = products.filter(function(elemento){
             return elemento.id!=idProducto;
         })
         
         products = arrProductos ;
+        fs.unlinkSync(path.join(__dirname, '../../public/img/products/',pimagen))
         fs.writeFileSync(productsFilePath,JSON.stringify(products,null," "));
         res.redirect('/');
     }
