@@ -10,10 +10,10 @@
                 <img src="/img/banner1.jpg" class="d-block w-100" alt="...">
               </div>
               <div class="carousel-item">
-                <img src="/img/banner1.jpg" class="d-block w-100" alt="...">
+                <img src="/img/banner2.png" class="d-block w-100" alt="...">
               </div>
               <div class="carousel-item">
-                <img src="/img/banner1.jpg" class="d-block w-100" alt="...">
+                <img src="/img/banner3.png" class="d-block w-100" alt="...">
               </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -53,14 +53,16 @@
     <section class="container-fluid d-flex justify-content-around flex-wrap productos-destacados">
         <% for(i = 0; i<p.length; i++) { %>   
            <article class="product1">
-            <img src="/img/products/<%=p[i].image%>" alt=""> 
+            <div class="imgdiv">
+              <img src="/img/products/<%=p[i].image%>" alt="" class="imgproducto"> 
+            </div>
             <div class="d-flex justify-content-between align-items-center">
-                <div class="product1-title--description mt-5"> 
+                <div class="product1-title--description mt-5" style="width: 90%; margin-top: 10px !important"> 
                     
                     <h3 class="pt-3"><%= p[i].nombre%></h3><br>
                     <h5>id: <%= p[i].id %></h5>
                     <h6>precio: $<%= p[i].precio%></h6>
-                    <p> descripcion:<%= p[i].descripcion %></p>
+                    <p> descripcion: <%= p[i].descripcion %></p>
                     <button href="#"><a href="/productDetail/<%=p[i].id%>">Ver Producto</a></button>
                 </div>
             </div>
