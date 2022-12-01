@@ -15,6 +15,13 @@ function turnosData(sequelize, DataTypes){
     let cg = {camelcase: false, timestamps: false, freezeTableName: true};
     
     const turno = sequelize.define(a,c,cg)
+
+    turno.associate = function(models) {
+        turno.belongsTo(models.usuario,{
+            as: 'turnoUsuario',
+            foreignKey: 'usuario_id'
+        })
+    }
     
     return turno;
     }

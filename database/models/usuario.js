@@ -17,6 +17,12 @@ let cg = {camelcase: false, timestamps: false, freezeTableName: true};
 
 const usuarios = sequelize.define(a,c,cg)
 
+usuarios.associate = function(models) {
+    usuarios.hasMany(models.turno,{
+        as: 'usuarioTurno',
+        foreignKey: 'usuario_id'
+    })
+}
 return usuarios;
 }
 
