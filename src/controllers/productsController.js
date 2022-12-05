@@ -50,11 +50,7 @@ let productsController = {
     store: (req, res) => {
         const resultValidation = validationResult(req)
 
-        // if(resultValidation.errors.length > 0){
-        //     res.render('users/register', {
-        //         errors: resultValidation.mapped(),
-        //         oldData: req.body
-        //     })
+        
         if(resultValidation.errors.length > 0){
             res.render('Products/product-create-form', {
                 errors: resultValidation.mapped()

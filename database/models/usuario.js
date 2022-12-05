@@ -19,5 +19,5 @@ const usuarios = sequelize.define(a,c,cg)
 
 return usuarios;
 }
-
+//belongsTo
 module.exports = usuariosData;

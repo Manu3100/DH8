@@ -13,5 +13,6 @@ function localData(sequelize, DataTypes){
     
     return local;
     }
+    //hasMany
     
     module.exports = localData;
