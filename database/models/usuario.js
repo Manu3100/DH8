@@ -25,5 +25,5 @@ usuarios.associate = function(models) {
 }
 return usuarios;
 }
-
+//belongsTo
 module.exports = usuariosData;
