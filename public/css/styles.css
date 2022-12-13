@@ -1049,6 +1049,8 @@ flex-wrap: wrap;
     font-weight: 550;
     text-align: center;
 }
+
+#ProdIds { visibility: hidden;}
 /*media querys*/
 
 @media (max-width: 910px) { 

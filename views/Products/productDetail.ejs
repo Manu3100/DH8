@@ -16,9 +16,9 @@
                     <div class="product1-title--description"> 
                         
                         <h3 class="pt-3"><%= p[i].nombre%></h3><br>
-                        <h5>id: <%= p[i].id %></h5>
-                        <h6>precio: $<%= p[i].precio%></h6>
-                        <p> descripcion:<%= p[i].descripcion %></p>
+                        <h5 id="ProdIds">id: <%= p[i].id %></h5>
+                        <h6>$<%= p[i].precio%></h6>
+                        <p> <%= p[i].descripcion %></p>
                         <button href="#"><a href="/productDetail/<%=p[i].id%>">Ver Producto</a></button>
                     </div>
                 </div>
