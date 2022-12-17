@@ -15,15 +15,32 @@ let c = {
 
 let cg = {camelcase: false, timestamps: false, freezeTableName: true};
 
-const usuarios = sequelize.define(a,c,cg)
+const usuario = sequelize.define(a,c,cg)
 
-usuarios.associate = function(models) {
-    usuarios.hasMany(models.turno,{
+usuario.associate = function(models) {
+    
+    usuario.hasMany(models.turno,{
         as: 'usuarioTurno',
         foreignKey: 'usuario_id'
+    });
+  
+    usuario.hasMany(models.venta,{
+        as: 'usuarioVenta',
+        foreignKey: 'usuario_id'
+    });
+
+    usuario.hasMany(models.producto,{
+        as: 'usuarioProducto',
+        foreignKey: 'admin_id'
+    });
+
+    usuario.belongsTo(models.local,{
+        as: 'usuarioLocal',
+        foreignKey: 'local_id'
     })
+
 }
-return usuarios;
+return usuario;
 }
-//belongsTo
+
 module.exports = usuariosData;

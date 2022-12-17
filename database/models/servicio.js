@@ -11,6 +11,20 @@ function serviciosData(sequelize, DataTypes){
     
     const servicio = sequelize.define(a,c,cg)
     
+    servicio.associate = function(models) {
+        
+        servicio.belongsToMany(models.local,{
+            as: 'servicioLocal',
+            through: "local_servicio",
+            foreignKey: "servicio_id",
+            otherKey: "local_id"
+        });
+        servicio.hasMany(models.turno,{
+            as: 'servicioTurno',
+            foreignKey: 'servicio_id'
+        });
+    }
+
     return servicio;
     }
     

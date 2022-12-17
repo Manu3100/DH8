@@ -15,9 +15,26 @@ function productosData(sequelize, DataTypes){
     
     let cg = {camelcase: false, timestamps: false, freezeTableName: true};
     
-    const productos = sequelize.define(a,c,cg)
-    
-    return productos;
+    const producto = sequelize.define(a,c,cg)
+
+    producto.associate = function(models) {
+        
+        producto.hasMany(models.venta,{
+            as: 'productoVenta',
+            foreignKey: "producto_id"
+        });
+
+        producto.belongsTo(models.usuario,{
+            as: 'productoUsuario',
+            foreignKey: "admin_id"
+        });
+
+        producto.belongsTo(models.categoria,{
+            as: 'productoCategoria',
+            foreignKey: "categoria_id"
+        });
+    }
+    return producto;
     }
     
     module.exports = productosData;

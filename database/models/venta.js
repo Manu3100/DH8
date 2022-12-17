@@ -14,8 +14,25 @@ function ventasData(sequelize, DataTypes){
     let cg = {camelcase: false, timestamps: false, freezeTableName: true};
     
     const venta = sequelize.define(a,c,cg)
-    
-    return venta;
+
+    venta.associate = function(models) {
+        
+        venta.belongsTo(models.usuario,{
+            as: 'ventaUsuario',
+            foreignKey: 'usuario_id'
+        });
+
+        venta.belongsTo(models.producto,{
+            as: 'ventaProducto',
+            foreignKey: 'producto_id'
+        });
+
+        venta.belongsTo(models.detalle_venta,{
+            as: 'ventaDetalle',
+            foreignKey: 'detalle_venta_id'
+        });
     }
+    return venta;
+}
     
     module.exports =  ventasData;

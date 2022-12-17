@@ -11,8 +11,25 @@ function localData(sequelize, DataTypes){
     
     const local = sequelize.define(a,c,cg)
     
+    local.associate = function(models) {
+        
+        local.belongsToMany(models.servicio,{
+            as: 'localServicio',
+            through: "local_servicio",
+            foreignKey: "local_id",
+            otherKey: "servicio_id"
+        });
+        local.hasMany(models.turno,{
+            as: 'localTurno',
+            foreignKey: 'local_id'
+        });
+        local.hasMany(models.usuario,{
+            as: 'localUsuario',
+            foreignKey: 'local_id'
+        });
+    }
     return local;
     }
-    //hasMany
+    
     
     module.exports = localData;

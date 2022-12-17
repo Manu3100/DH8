@@ -17,10 +17,21 @@ function turnosData(sequelize, DataTypes){
     const turno = sequelize.define(a,c,cg)
 
     turno.associate = function(models) {
+        
         turno.belongsTo(models.usuario,{
             as: 'turnoUsuario',
             foreignKey: 'usuario_id'
-        })
+        });
+
+        turno.belongsTo(models.local,{
+            as: 'turnoLocal',
+            foreignKey: 'turno_id'
+        });
+
+        turno.belongsTo(models.servicio,{
+            as: 'turnoServicio',
+            foreignKey: 'servicio_id'
+        });
     }
     
     return turno;
