@@ -1,4 +1,4 @@
 const db = require('./database/models');
 
-db.usuario.findAll()
+db.venta.findAll()
 .then((resultados) => {console.log(resultados) })
