@@ -4,7 +4,7 @@ const app = express()
 const session = require('express-session')
 const publicPath = path.resolve(__dirname, './public')
 app.set('view engine', 'ejs')
-
+const PORT = process.env.PORT || 3000
 const userLoggedMiddleware = require('./Middlewares/userLoggedMiddleware')
 
 
@@ -34,7 +34,7 @@ app.use('/', petshopRoutes)
 //     res.status(404).render('error')
 // })
 
-app.listen(process.env.PORT || 3000, function() {
+app.listen(PORT, function() {
     console.log('Servidor corriendo')
 })
 
