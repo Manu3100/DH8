@@ -5,5 +5,7 @@ let petController = require('../controllers/petshopController')
 
 router.get('/aboutUs', petController.aboutUs)
 
+router.get('/cart', petController.cart)
+
 
 module.exports = router
