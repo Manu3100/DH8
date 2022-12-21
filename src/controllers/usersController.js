@@ -3,6 +3,7 @@ let path = require('path');
 const User = require('../../models/User');
 const bcryptjs = require('bcryptjs');
 // let session = require('express-session')
+let db = require('../../database/models')
 
 let usersController = {
     index: (req, res) => {
@@ -25,7 +26,7 @@ let usersController = {
             oldData: req.body
         })
       }
-      let userInDB = User.findByField('emailUsuario', req.body.emailUsuario)
+      let userInDB = usuario.findByField('emailUsuario', req.body.emailUsuario)
 
       if(userInDB){
         return res.render('Users/register',{
@@ -37,13 +38,16 @@ let usersController = {
             oldData: req.body
         })
       }
-
-      let userToCreate = {
-        ...req.body,
-        passwordUsuario: bcryptjs.hashSync(req.body.passwordUsuario, 10),
-       imageProfile: req.file.filename
-      }
-     User.create(userToCreate)
+        db.usuario.create({
+            nombre: req.body.nombreUsuario,
+            apellido: req.body.apellidoUsuario,
+            email: req.body.emailUsuario,
+            clave: bcryptjs.hashSync(req.body.passwordUsuario, 10), 
+            imagen: req.file.filename,
+            admin: 1,
+            local_id: req.body.localUsuario 
+        })
+     
       res.redirect('/login')
 },
 
@@ -51,12 +55,14 @@ login:(req,res)=>{
     res.render('Users/login')
 },
 loginProcess: (req,res)=>{
-   let userToLogin = User.findByField('emailUsuario', req.body.emailUsuario)
+   let userToLogin = db.usuario.findOne({
+        where: {email: req.body.emailUsuario}
+   }) 
 
    if(userToLogin){
-        let isOkThePassword = bcryptjs.compareSync(req.body.passwordUsuario, userToLogin.passwordUsuario)
+        let isOkThePassword = bcryptjs.compareSync(req.body.passwordUsuario, userToLogin.clave)
         if(isOkThePassword){
-            delete userToLogin.passwordUsuario
+            delete userToLogin.clave
             req.session.userLogged = userToLogin;
         return res.redirect('/profile');
         }

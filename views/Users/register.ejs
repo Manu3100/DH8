@@ -16,9 +16,15 @@
             <form method="POST" action="/register" enctype="multipart/form-data">
 
                 <label for="nombreUsuario"></label><br>
-                <input type="text" placeholder="Nombre y Apellido" name="nombreUsuario" value="<%= locals.oldData ? locals.oldData.nombreUsuario : null %>"><br>
+                <input type="text" placeholder="Nombre" name="nombreUsuario" value="<%= locals.oldData ? locals.oldData.nombreUsuario : null %>"><br>
                 <% if(locals.errors && errors.nombreUsuario){%>
                     <p style="color:red ;"><%= errors.nombreUsuario.msg %></p> <br>
+                     <% }%>
+
+                     <label for="apellidoUsuario"></label><br>
+                <input type="text" placeholder="Apellido" name="apellidoUsuario" value="<%= locals.oldData ? locals.oldData.apellidoUsuario : null %>"><br>
+                <% if(locals.errors && errors.apellidoUsuario){%>
+                    <p style="color:red ;"><%= errors.apellidoUsuario.msg %></p> <br>
                      <% }%>
 
                 <label for="emailUsuario"></label><br>
@@ -26,6 +32,15 @@
                 <% if(locals.errors && errors.emailUsuario){%>
                     <p style="color:red ;"><%= errors.emailUsuario.msg %></p> <br>
                      <% }%>
+
+                     <label for="localUsuario">Local</label><br>
+                    <select id="localUsuario" name="localUsuario">
+                        <option value="1">Pilar</option>
+                        <option value="2">Otros</option>
+                      </select><br><br>
+                      <% if(locals.errors && errors.localUsuario){%>
+                        <p style="color:red ;"><%= errors.localUsuario.msg %></p> <br>
+                         <% }%>
 
                 <label for="passwordUsuario"></label>
                 <input type="password" placeholder="Contraseña" name="passwordUsuario" value="<%= locals.oldData ? locals.oldData.passwordUsuario : null %>"><br>
