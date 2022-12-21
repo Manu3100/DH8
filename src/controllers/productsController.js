@@ -9,7 +9,7 @@ let productsController = {
         db.producto.findAll()
         .then(function(productos){
         res.render('index', {p: productos}); 
-        }) .catch(error => console.log(error)) 
+        }) 
         
     },
     
@@ -21,14 +21,14 @@ let productsController = {
         db.producto.findByPk(req.params.id)
         .then(function(objProducto){
             res.render('Products/product-edit-form',{ p: objProducto});
-        }) .catch(error => console.log(error)) 
+        }) 
         },
     
     detail: (req, res) => {
         db.producto.findAll()
         .then(function(productos){
         res.render('Products/productDetail', {p: productos}); 
-        }) .catch(error => console.log(error)) 
+        }) 
         
     },
     
@@ -36,7 +36,7 @@ let productsController = {
         db.producto.findByPk(req.params.id)
         .then(function(detalleProducto){
             res.render('Products/productId',{ p: detalleProducto});  
-        }) .catch(error => console.log(error)) 
+        })  
 
     },
     
@@ -70,7 +70,7 @@ let productsController = {
             db.producto.findByPk(req.params.id)
             .then(function(objProducto){
             res.render('Products/product-edit-form',{ p: objProducto, errors: resultValidation.mapped()});
-        }) .catch(error => console.log(error)) 
+        }) 
 
         }else{
             
