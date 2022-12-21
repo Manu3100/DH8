@@ -5,6 +5,7 @@ function productosData(sequelize, DataTypes){
     let c = {
         id:{type: DataTypes.TINYINT, primaryKey: true, autoincrement: true},
         nombre:{type: DataTypes.STRING},
+        descripcion:{type: DataTypes.STRING},
         precio:{type: DataTypes.DECIMAL},
         fecha_creacion:{type: DataTypes.DATE},
         fecha_baja:{type: DataTypes.DATE, allowNull: true},

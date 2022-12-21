@@ -30,9 +30,9 @@ app.use('/', usersRoutes)
 const petshopRoutes = require('./src/routes/petshopRoutes')
 app.use('/', petshopRoutes)
 
-// app.use((req,res,next) => {
-//     res.status(404).render('error')
-// })
+ //app.use((req,res,next) => {
+ //    res.status(404).render('error')/
+//})
 
 app.listen(PORT, function() {
     console.log('Servidor corriendo')

@@ -1,15 +1,16 @@
 let path = require('path');
 const fs = require('fs');
-const productsFilePath = path.join(__dirname, '../data/products.json')
-let products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'))
 let {validationResult} = require('express-validator')
-
+let db = require('../../database/models')
 
 
 let productsController = {
     index: (req, res) => {
-        products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'))
-        res.render('index', {p: products});
+        db.producto.findAll()
+        .then(function(productos){
+        res.render('index', {p: productos}); 
+        })
+        
     },
     
     create: (req,res) => {
@@ -17,34 +18,26 @@ let productsController = {
     },
     
     edit: (req,res) => {
-        let idProducto = req.params.id;
-        let objProducto;
-
-        for (let p of products){
-            if (idProducto == p.id){
-                objProducto=p;
-                break;
-            }
-        }
-        res.render('Products/product-edit-form',{ p: objProducto});
+        db.producto.findByPk(req.params.id)
+        .then(function(objProducto){
+            res.render('Products/product-edit-form',{ p: objProducto});
+        })
+        },
+    
+    detail: (req, res) => {
+        db.producto.findAll()
+        .then(function(productos){
+        res.render('Products/productDetail', {p: productos}); 
+        })
         
     },
     
-    detail: (req, res) => {
-        res.render('Products/productDetail', {p: products});
-    },
-    
     detailId: (req, res) => {
-        let idProducto = req.params.id;
-        let objProducto;
+        db.producto.findByPk(req.params.id)
+        .then(function(detalleProducto){
+            res.render('Products/productId',{ p: detalleProducto});  
+        })
 
-        for (let p of products){
-            if (idProducto == p.id){
-                objProducto=p;
-                break;
-            }
-        }
-        res.render('Products/productId',{ p: objProducto});
     },
     
     store: (req, res) => {
@@ -57,15 +50,15 @@ let productsController = {
             })
         }else{
             let imageName = req.file.filename
-            let productoNuevo = {
-                id: products[products.length-1].id+1,
+            db.producto.create({
                 nombre: req.body.nombre,
                 precio: req.body.precio,
                 descripcion: req.body.descripcion,
-                image: imageName
-            }
-            products.push(productoNuevo);
-            fs.writeFileSync(productsFilePath,JSON.stringify(products,null," "));
+                fecha_creacion: req.body.fecha_creacion,
+                categoria_id: req.body.categoria,
+                admin_id: 1,
+                imagen: imageName
+        })
             res.redirect('/');
         }
     },
@@ -73,54 +66,39 @@ let productsController = {
         const resultValidation = validationResult(req)
 
         if(resultValidation.errors.length > 0){
-            let idProducto = req.params.id;
-            let objProducto;
-
-            for (let p of products){
-                if (idProducto == p.id){
-                    objProducto=p;
-                    break;
-                }
-            }
+            
+            db.producto.findByPk(req.params.id)
+            .then(function(objProducto){
             res.render('Products/product-edit-form',{ p: objProducto, errors: resultValidation.mapped()});
+        })
 
         }else{
-
-            let idProducto = req.params.id;
+            
             let imageEdit = req.file.filename;
-
-            for (let p of products){
-                if (idProducto == p.id){
-                    p.nombre = req.body.nombre;
-                    p.precio = req.body.precio;
-                    p.descripcion = req.body.descripcion;
-                    p.image = imageEdit;
-                    break;
+             
+            db.producto.update({
+                nombre: req.body.nombre,
+                precio: req.body.precio,
+                descripcion: req.body.descripcion,
+                fecha_creacion: req.body.fecha_creacion,
+                imagen: imageEdit
+            }, {
+                where: {
+                    id: req.params.id
                 }
-                }
-            fs.writeFileSync(productsFilePath,JSON.stringify(products,null," "));
+            });
+            
             res.redirect('/');
         }
     },
     delete: (req,res) => {
-        let idProducto = req.params.id;
-        let pimagen;
-
-        for (let p of products){
-            if (idProducto == p.id){
-                pimagen=p.image;
-                break;
-            }
+       db.producto.destroy({
+        where: {
+            id: req.params.id
         }
-        let arrProductos = products.filter(function(elemento){
-            return elemento.id!=idProducto;
-        })
-        
-        products = arrProductos ;
-        fs.unlinkSync(path.join(__dirname, '../../public/img/products/',pimagen))
-        fs.writeFileSync(productsFilePath,JSON.stringify(products,null," "));
-        res.redirect('/');
-    }
+    })
+    res.redirect('/');
+}
 }
 
 module.exports = productsController

@@ -40,5 +40,12 @@
   "emailUsuario": "Mateozc@gmail.com",
   "passwordUsuario": "$2a$10$0W0C2/6eCvva39gC2iDPiOFW3ZK3tEUsJLZ4UirBHULzGK.HimJR6",
   "imageProfile": "1669562776827images.jpg"
+ },
+ {
+  "id": 7,
+  "nombreUsuario": "Manuel Giovinazzo",
+  "emailUsuario": "m@prueba.com",
+  "passwordUsuario": "$2a$10$PnNLyw5UYdxs0CINfA946Ok/.qDbUCcA5QlShR8dZZPSz4Yi8shpu",
+  "imageProfile": "1671575049530cecilia1 077.jpg"
  }
 ]

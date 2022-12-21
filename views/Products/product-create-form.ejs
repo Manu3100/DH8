@@ -26,6 +26,21 @@
                     <% if(locals.errors && errors.descripcion){%>
                         <p style="color:red ;"><%= errors.descripcion.msg %></p> <br>
                          <% }%>
+
+                    <label class="label_producto" for="categoria">Categoria</label><br>
+                    <select id="categoria" name="categoria">
+                        <option value="1">Comida</option>
+                        <option value="2">Otros</option>
+                      </select><br><br>
+                        <% if(locals.errors && errors.categoria){%>
+                        <p style="color:red ;"><%= errors.categoria.msg %></p> <br>
+                         <% }%>
+
+                         <label class="label_producto" for="fecha_creacion">Fecha Creacion</label><br>
+                    <input type="date" name="fecha_creacion" placeholder="20/12/2022"></textarea><br><br>
+                    <% if(locals.errors && errors.fecha_creacion){%>
+                        <p style="color:red ;"><%= errors.fecha_creacion.msg %></p> <br>
+                         <% }%>
             </div>
 
             <div class="info_img">
