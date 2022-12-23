@@ -1,6 +1,6 @@
 const { validationResult } = require('express-validator');
 let path = require('path');
-const User = require('../../models/User');
+//const User = require('../../models/User');
 const bcryptjs = require('bcryptjs');
 // let session = require('express-session')
 let db = require('../../database/models')
@@ -14,10 +14,10 @@ let usersController = {
         
 }, profile:(req,res)=>{
     res.render('Users/profile', {
-        user: req.session.userLogged
+        user: req.session.userLogged // con que igualar para 
     })
 },
-    registerProcess: (req,res) => {
+    registerProcess: async (req,res) => {
       const resultValidation = validationResult(req)
 
       if(resultValidation.errors.length > 0){
@@ -26,7 +26,9 @@ let usersController = {
             oldData: req.body
         })
       }
-      let userInDB = usuario.findByField('emailUsuario', req.body.emailUsuario)
+      let userInDB = await db.usuario.findOne({
+        where: {email: req.body.emailUsuario}
+   })
 
       if(userInDB){
         return res.render('Users/register',{
@@ -54,13 +56,13 @@ let usersController = {
 login:(req,res)=>{
     res.render('Users/login')
 },
-loginProcess: (req,res)=>{
-   let userToLogin = db.usuario.findOne({
+loginProcess: async (req,res)=>{
+   let userToLogin = await db.usuario.findOne({
         where: {email: req.body.emailUsuario}
    }) 
 
    if(userToLogin){
-        let isOkThePassword = bcryptjs.compareSync(req.body.passwordUsuario, userToLogin.clave)
+        let isOkThePassword = bcryptjs.compare(req.body.passwordUsuario, userToLogin.clave)
         if(isOkThePassword){
             delete userToLogin.clave
             req.session.userLogged = userToLogin;
@@ -73,7 +75,7 @@ loginProcess: (req,res)=>{
                 }
             }
         })
-    }
+ }
 
     return res.render('Users/login',{
         errors:{

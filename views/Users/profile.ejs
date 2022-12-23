@@ -1,7 +1,7 @@
 <%-include('../Partials/head', {title: 'Login'})%> 
 <body>
     <%-include('../Partials/header')%>
-    <h2>Hola <%= user.nombre %> </h2>
+    <h2>Bienvenido <%= user.nombre %>! </h2>
     <img style="width: 250px; height: auto; padding: 25px; border-radius: 650px; " src="img/avatars/<%=user.imagen%>">
     <p style="padding: 15px; border: 2px solid green; display:inline; border-radius: 650px"> <%= user.email%></p>
 </body>
