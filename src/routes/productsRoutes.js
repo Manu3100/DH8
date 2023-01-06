@@ -5,6 +5,8 @@ const path = require('path');
 const {body} = require('express-validator')
 let productsController = require('../controllers/productsController');
 const guestMiddleware = require('../../Middlewares/guestMiddleware')
+const validationsProducts = require('../../Middlewares/prodValidationMW')
+const userLogged = require('../../Middlewares/userLoggedMiddleware')
 
 const configImage = multer.diskStorage({
     destination: (req, file, cb)=> {
@@ -16,41 +18,9 @@ const configImage = multer.diskStorage({
     }
 })
 
-const validationsProducts = [
-    body('nombre').notEmpty().withMessage('Debe ingresar un nombre para el producto'),
-    body('precio').notEmpty().withMessage('Debe ingresar un Precio para el producto'),
-    body('descripcion').notEmpty().withMessage('Debe ingresar una descripcion para su producto'),
-    body('image').custom((value, {req})=>{
-        let file = req.file; 
-        let acceptedExtensions = ['.jpg', '.png', '.gif'];
-        if(!file){
-            throw new Error('Debes subir una imagen')
-        }else {
-            let fileExtension = path.extname(file.originalname);
-            if (!acceptedExtensions.includes(fileExtension)) {
-                throw new Error(`Las extensiones permitidas son ${acceptedExtensions.join(', ')}`);
-            }
-        }
-
-        return true;
-    }),
-    body('imageEdit').custom((value, {req})=>{
-        let file = req.file; 
-        let acceptedExtensions = ['.jpg', '.png', '.gif'];
-        if(!file){
-            throw new Error('Debes subir una imagen')
-        }else {
-            let fileExtension = path.extname(file.originalname);
-            if (!acceptedExtensions.includes(fileExtension)) {
-                throw new Error(`Las extensiones permitidas son ${acceptedExtensions.join(', ')}`);
-            }
-        }
-
-        return true;
-    })
-]
-
 const uploadFile = multer({storage: configImage})
+
+
 
 router.get('/', productsController.index)
 
@@ -64,7 +34,7 @@ router.get('/productDetail', productsController.detail)
 
 router.get('/productDetail/:id', productsController.detailId)
 
-router.post('/productCreate', uploadFile.single('image'), validationsProducts ,productsController.store)
+router.post('/productCreate', userLogged, uploadFile.single('image'), validationsProducts ,productsController.store)
 
 router.delete('/delete/:id', productsController.delete)
 

@@ -14,7 +14,7 @@ let usersController = {
         
 }, profile:(req,res)=>{
     res.render('Users/profile', {
-        user: req.session.userLogged // con que igualar para 
+        user: req.session.userLogged 
     })
 },
     registerProcess: async (req,res) => {
