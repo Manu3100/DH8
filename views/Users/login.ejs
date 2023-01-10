@@ -10,21 +10,22 @@
             <img src="/img/logo.png" class="logo-myaccount">
             <h2 class="title-login text-center">Login</h2>
 			<br> 
-            <form method="POST" action="/login">
+            <form id="loginForm" method="POST" action="/login">
                 <label for="emailUsuario">Email</label><br>
-                <input  type="text" name="emailUsuario" placeholder="Email"><br>
+                <input id="emailInput"  type="text" name="emailUsuario" placeholder="Email"><br>
                 <% if(locals.errors && errors.emailUsuario){ %>
                    <p style="color: red;"> <%= errors.emailUsuario.msg %> </p>
                     <% } %>
 
                 <label for="passwordUsuario">Contraseña</label><br>
-                <input type="password" name="passwordUsuario" placeholder="Contraseña"><br>
+                <input id="passInput" type="password" name="passwordUsuario" placeholder="Contraseña"><br>
                 <% if(locals.errors && errors.passwordUsuario){ %>
                     <p style="color: red;"> <%= errors.passwordUsuario.msg %> </p>
                      <% } %>
                 <input type="submit" value="Ingresar" class="submit"><br>
                 <a href="#">¿Has olvidado tu contraseña?</a>
             </form>
+            <script src="/js/loginVal.js"></script>
 		</div>
 	</div>
 

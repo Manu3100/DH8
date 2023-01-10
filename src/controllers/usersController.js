@@ -50,7 +50,7 @@ let usersController = {
             local_id: req.body.localUsuario 
         })
      
-      res.redirect('/login')
+    .then(res.redirect('/login'))
 },
 
 login:(req,res)=>{

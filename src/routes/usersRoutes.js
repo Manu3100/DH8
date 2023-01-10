@@ -22,7 +22,7 @@ const uploadAvatar = multer({storage})
 
 router.get('/register', validationsRegister, guestMiddleware ,usersController.register)
 
-router.post('/register', uploadAvatar.single('imageProfile'), validationsRegister ,usersController.registerProcess)
+router.post('/register', uploadAvatar.single('imageProfile') , validationsRegister ,usersController.registerProcess)
 
 router.get('/login', guestMiddleware, usersController.login)
 
