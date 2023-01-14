@@ -1,4 +1,5 @@
-const db = require('./database/models');
+let productos = JSON.parse(localStorage.getItem('carrito'))
 
-db.venta.findAll()
-.then((resultados) => {console.log(resultados) })
+
+console.log(productos)
+

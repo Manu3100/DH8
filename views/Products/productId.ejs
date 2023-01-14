@@ -3,7 +3,7 @@
 <body>
     <%-include('../Partials/header')%>
    
-    <h2>Estas viendo el producto: <%= p.nombre%></h2>
+    
 
     <main>
         <div >
@@ -32,7 +32,7 @@
                 <div class="col-md-6 mt">
                     <div >
                         <h1 id="product-title"><%= p.nombre%></h1>
-                        <div class="proveedor">Proveedor: #</div>
+                        <div class="proveedor"></div>
                         <div id="ProdIds"><%= p.id%></div>
                         <div id="precio">$<%= p.precio%></div>
                         <div>
@@ -51,7 +51,7 @@
                                 <br>
                             </div>
                             <div class="d-grid gap-2 col-6 ">
-                                <button type="button" class="btn btn-primary agregar-carrito">
+                                <button id="botComprar" type="button" class="btn btn-primary agregar-carrito">
                                     <span>COMPRAR</span>
                                 </button>
                                
@@ -81,6 +81,7 @@
             </div>
 
         </div>
+        <script src="/js/carrito.js"></script>
     <%-include('../Partials/footer')%>
 
 </body>

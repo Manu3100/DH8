@@ -46,7 +46,7 @@ let usersController = {
             email: req.body.emailUsuario,
             clave: bcryptjs.hashSync(req.body.passwordUsuario, 10), 
             imagen: req.file.filename,
-            admin: 1,
+            admin: 0,
             local_id: req.body.localUsuario 
         })
      

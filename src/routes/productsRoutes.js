@@ -6,7 +6,9 @@ const {body} = require('express-validator')
 let productsController = require('../controllers/productsController');
 const guestMiddleware = require('../../Middlewares/guestMiddleware')
 const validationsProducts = require('../../Middlewares/prodValidationMW')
-const userLogged = require('../../Middlewares/userLoggedMiddleware')
+const userLogged = require('../../Middlewares/userLoggedMiddleware');
+const isAdmin = require('../../Middlewares/isAdminMW');
+const authMiddleware = require('../../Middlewares/authMiddleware')
 
 const configImage = multer.diskStorage({
     destination: (req, file, cb)=> {
@@ -24,19 +26,19 @@ const uploadFile = multer({storage: configImage})
 
 router.get('/', productsController.index)
 
-router.get('/productCreate', productsController.create)
+router.get('/productCreate', userLogged, isAdmin, productsController.create)
 
-router.get('/productEdit/:id', productsController.edit)
+router.get('/productEdit/:id', authMiddleware, isAdmin, productsController.edit)
 
-router.put('/productEdit/:id', uploadFile.single('imageEdit'), validationsProducts, productsController.update)
+router.put('/productEdit/:id', isAdmin, uploadFile.single('imageEdit'), validationsProducts, productsController.update)
 
-router.get('/productDetail', productsController.detail)
+router.get('/productDetail', userLogged, productsController.detail)
 
-router.get('/productDetail/:id', productsController.detailId)
+router.get('/productDetail/:id', userLogged, productsController.detailId)
 
-router.post('/productCreate', userLogged, uploadFile.single('image'), validationsProducts ,productsController.store)
+router.post('/productCreate', userLogged, isAdmin, uploadFile.single('image'), validationsProducts ,productsController.store)
 
-router.delete('/delete/:id', productsController.delete)
+router.delete('/delete/:id', authMiddleware, isAdmin, productsController.delete)
 
 
 
