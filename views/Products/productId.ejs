@@ -19,15 +19,15 @@
 
         <nav class="container" style="padding-top: 30px">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+              <li class="breadcrumb-item"><a href="/productDetail">Inicio</a></li>
               <li class="breadcrumb-item active" aria-current="page">Producto</li>
             </ol>
         </nav>    
-
+        <% if(locals.isLogged){ %>   
         <div class="container">
             <div class="row">
                 <div class="col-md-6 mb-4">
-                    <div style="text-align:center;"><img src="/img/products/<%= p.imagen%>" class="img-thumbnail" alt="bulldog-frances"></div>
+                    <div style="text-align:center;"><img id = 'imgProd' src="/img/products/<%= p.imagen%>" class="img-thumbnail" alt="bulldog-frances"></div>
                 </div>
                 <div class="col-md-6 mt">
                     <div >
@@ -36,29 +36,16 @@
                         <div id="ProdIds"><%= p.id%></div>
                         <div id="precio">$<%= p.precio%></div>
                         <div>
-                            <div class="cantidades">
-                                <input type="number" class="input-qty" step="1" min="1" max="10" name="quantity" value="1" size="4" pattern="[0-9]*" inputmode="numeric" >
-                                <div>
-                                    <button type="button" class="boton-mas">
-                                        <i class="signo-mas">+</i>
-                                    </button>
-                                </div>
-                                <div>
-                                    <button type="button" class="boton-menos">
-                                        <i class="signo-menos">-</i>
-                                    </button>
-                                </div>
-                                <br>
-                            </div>
+                           
                             <div class="d-grid gap-2 col-6 ">
                                 <button id="botComprar" type="button" class="btn btn-primary agregar-carrito">
-                                    <span>COMPRAR</span>
+                                    <span>Agregar a carrito</span>
                                 </button>
                                
                                    <a style="text-decoration: none;" class="btn btn-secondary" href="/productEdit/<%=p.id%>">Editar</a> 
                                 <form action="/delete/<%=p.id%>?_method=DELETE" method="POST"> 
                                     <input type="submit" value="BORRAR" class="btn btn-danger">
-                                <!-- <a href="/" class="btn btn-danger">Borrar</a> -->
+        
                             </form>
 
                             
@@ -80,8 +67,55 @@
                 </div>
             </div>
 
-        </div>
+        </div><%} else{%>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div style="text-align:center;"><img id = 'imgProd' src="/img/products/<%= p.imagen%>" class="img-thumbnail" alt="bulldog-frances"></div>
+                    </div>
+                    <div class="col-md-6 mt">
+                        <div >
+                            <h1 id="product-title"><%= p.nombre%></h1>
+                            <div class="proveedor"></div>
+                            <div id="ProdIds"><%= p.id%></div>
+                            <div id="precio">$<%= p.precio%></div>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>  
+                        <br>
+                                 
+                        </div>
+                        <div class="descripcion-producto">
+                            <span>DESCRIPCIÓN</span>
+                        </div>
+    
+                        <div>
+                            <p><%= p.descripcion%></p>
+                            
+    
+                        </div>
+    
+                    </div>
+                </div>
+    
+            </div>
+            <% } %>
         <script src="/js/carrito.js"></script>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        
+        
+
     <%-include('../Partials/footer')%>
 
 </body>
