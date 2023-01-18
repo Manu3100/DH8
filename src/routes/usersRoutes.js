@@ -32,6 +32,10 @@ router.get('/profile', authMiddleware ,usersController.profile)
 
 router.get('/logout/', usersController.logout)
 
+router.get('/servicesForm', usersController.services)
+
+//router.post('/servicesForm', usersController.servicesProcess)
+
 
 
 

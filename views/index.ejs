@@ -29,17 +29,17 @@
 
          <section class="pets container pt-5 pb-5 ">
             <div>
-                <img class="pet-dog" src="/img/1.jpg" alt=""><br/>
+              <a href="/productsDog"><img class="pet-dog" src="/img/1.jpg" alt=""><br/></a>
                 <h3 class="text-center">Perros</h3>
             </div>
 
             <div>
-                <img class="pet-cat" src="/img/2.jpg" alt=""><br/>
+              <a href="/productsCat"><img class="pet-cat" src="/img/2.jpg" alt=""><br/></a>
                 <h3 class="text-center">Gatos</h3>
             </div>
 
             <div>
-                <img class="pet-other" src="/img/3.jpg" alt=""><br/>
+              <a href="/otherProducts"><img class="pet-other" src="/img/3.jpg" alt=""><br/></a>
                 <h3 class="text-center">Otros</h3>
             </div>
          </section>
@@ -51,7 +51,7 @@
 
      
     <section class="container-fluid d-flex justify-content-around flex-wrap productos-destacados">
-        <% for(i = 0; i<p.length; i++) { %>   
+        <% for(i = 0; i<4; i++) { %>   
            <article class="product1">
             <div class="imgdiv">
               <img src="/img/products/<%=p[i].imagen%>" alt="" class="imgproducto"> 
@@ -78,8 +78,8 @@
         <h2 class="text-center">Servicios</h2>
         
         <div class="services">
-            <img src="/img/PeluqueriaCanina.jpg" alt="">
-            <img src="/img/VETERINARIA.jpg" alt="">
+            <a href="/servicesForm"><img src="/img/PeluqueriaCanina.jpg" alt=""></a>
+            <a href="/servicesForm"><img src="/img/VETERINARIA.jpg" alt=""></a>
         </div>
 
     </section>

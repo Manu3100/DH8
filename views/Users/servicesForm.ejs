@@ -1,0 +1,68 @@
+<%-include('../Partials/head', {title: 'Login'})%> 
+
+<body>
+    <%-include('../Partials/header')%>
+    <div class="form">
+
+		<div class="SignUp_form">
+            <img src="/img/logo.png" class="logo-myaccount">
+            <h2 class="title-login text-center">Turnos</h2>
+			<br>
+            
+            <form id="serviceForm" method="POST" action="/servicesForm" enctype="multipart/form-data">
+
+                <label for="nombreUsuario"></label><br>
+                <input id="nomInput" type="text" placeholder="Nombre" name="nombreUsuario" value="<%= locals.oldData ? locals.oldData.nombreUsuario : null %>"><br>
+                <% if(locals.errors && errors.nombreUsuario){%>
+                    <p style="color:red ;"><%= errors.nombreUsuario.msg %></p> <br>
+                     <% }%>
+
+                     <label for="apellidoUsuario"></label><br>
+                <input id="apeInput" type="text" placeholder="Apellido" name="apellidoUsuario" value="<%= locals.oldData ? locals.oldData.apellidoUsuario : null %>"><br>
+                <% if(locals.errors && errors.apellidoUsuario){%>
+                    <p style="color:red ;"><%= errors.apellidoUsuario.msg %></p> <br>
+                     <% }%>
+
+                <label for="emailUsuario"></label><br>
+                <input id="emailInput" type="email" placeholder="E-Mail" name="emailUsuario" value="<%= locals.oldData ? locals.oldData.emailUsuario : null %>"><br>
+                <% if(locals.errors && errors.emailUsuario){%>
+                    <p style="color:red ;"><%= errors.emailUsuario.msg %></p> <br>
+                     <% }%>
+
+                    <label for="localUsuario">Local</label><br>
+                    <select id="localUsuario" name="localUsuario">
+                        <option value="1">Pilar</option>
+                        <option value="2">Otros</option>
+                      </select><br><br>
+                      <% if(locals.errors && errors.localUsuario){%>
+                        <p style="color:red ;"><%= errors.localUsuario.msg %></p> <br>
+                         <% }%>
+
+                    <label for="servicioUsuario">Servicio</label><br>
+                    <select id="serviciolUsuario" name="servicioUsuario">     
+                        <option value="1">Veterinaria</option>
+                        <option value="2">Peluqueria</option>
+                        </select><br><br>
+                        <% if(locals.errors && errors.servicioUsuario){%>
+                        <p style="color:red ;"><%= errors.servicioUsuario.msg %></p> <br>
+                        <% }%>              
+
+                    <label for="fecha_creacion">Fecha</label><br>
+                    <input id="fechaInput" type="date" name="fecha_creacion" placeholder="20/12/2022"></textarea><br><br>
+                    <% if(locals.errors && errors.fecha_creacion){%>
+                        <p style="color:red ;"><%= errors.fecha_creacion.msg %></p> <br>
+                         <% }%>        
+
+                
+
+                <input type="submit" value="Solicitar Turno" class="submit"><br>
+            </form>
+            <script src="/js/turnosVal.js"></script>
+		</div>
+
+	</div>
+
+
+
+</body>
+</html>

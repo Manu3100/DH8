@@ -6,6 +6,7 @@ const publicPath = path.resolve(__dirname, './public')
 app.set('view engine', 'ejs')
 const PORT = process.env.PORT || 3000
 const userLoggedMiddleware = require('./Middlewares/userLoggedMiddleware')
+const cors = require('cors')
 
 
 app.use(session({
@@ -17,6 +18,7 @@ app.use(userLoggedMiddleware)
 app.use(express.static(publicPath))
 app.use(express.urlencoded({extended:false})); //Captura info x POST
 app.use(express.json()); // POST
+app.use(cors())
 
 const methodOverride = require('method-override'); // PUT,DELETE
 app.use(methodOverride('_method')); // PUT,DELETE
@@ -29,6 +31,9 @@ app.use('/', usersRoutes)
 
 const petshopRoutes = require('./src/routes/petshopRoutes')
 app.use('/', petshopRoutes)
+
+const apiRoutes = require('./src/routes/apiRoutes')
+app.use('/', apiRoutes)
 
  //app.use((req,res,next) => {
  //    res.status(404).render('error')/

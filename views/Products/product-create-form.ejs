@@ -29,14 +29,15 @@
 
                     <label class="label_producto" for="categoria">Categoria</label><br>
                     <select id="categoria" name="categoria">
-                        <option value="1">Comida</option>
-                        <option value="2">Otros</option>
+                        <option value="1">Alimento Canino</option>
+                        <option value="2">Alimento Felino</option>
+                        <option value="3">Otros</option>
                       </select><br><br>
                         <% if(locals.errors && errors.categoria){%>
                         <p style="color:red ;"><%= errors.categoria.msg %></p> <br>
                          <% }%>
 
-                         <label class="label_producto" for="fecha_creacion">Fecha Creacion</label><br>
+                    <label class="label_producto" for="fecha_creacion">Fecha Creacion</label><br>
                     <input id="fechaInput" type="date" name="fecha_creacion" placeholder="20/12/2022"></textarea><br><br>
                     <% if(locals.errors && errors.fecha_creacion){%>
                         <p style="color:red ;"><%= errors.fecha_creacion.msg %></p> <br>
