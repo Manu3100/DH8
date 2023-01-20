@@ -1,5 +1,5 @@
 # grupo_8_petShop
-La temática del sitio sera un sitio web dedicado a la venta de productos para mascotas como alimentos, juguetes, snacks, cepillos, y accesorios para mascotas.
+La temática del sitio sera un sitio web dedicado a la venta de productos para mascotas.
 La web esta dedicada a todas aquellas personas que tienen mascotas.
 
 Listado de 6 paginas: 
