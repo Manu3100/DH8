@@ -27,7 +27,7 @@ let usersController = {
               oldData: req.body
           })
         }
-        
+        console.log(req.body.servicioUsuario, req.body.localUsuario)
 
         db.turno.create({
             fecha_solicitud: Date.now(),

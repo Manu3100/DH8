@@ -34,7 +34,7 @@ router.get('/logout/', usersController.logout)
 
 router.get('/servicesForm', usersController.services)
 
-//router.post('/servicesForm', usersController.servicesProcess)
+router.post('/servicesForm', usersController.servicesProcess)
 
 
 

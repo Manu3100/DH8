@@ -29,4 +29,5 @@ a.addEventListener("submit", function(ev){
     }
 
     a.submit()
+    alert('Turno Agendado!')
 })

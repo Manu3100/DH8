@@ -9,7 +9,7 @@
             <h2 class="title-login text-center">Turnos</h2>
 			<br>
             
-            <form id="serviceForm" method="POST" action="/servicesForm" enctype="multipart/form-data">
+            <form id="serviceForm" method="POST" action="/servicesForm" >
 
                 <label for="nombreUsuario"></label><br>
                 <input id="nomInput" type="text" placeholder="Nombre" name="nombreUsuario" value="<%= locals.oldData ? locals.oldData.nombreUsuario : null %>"><br>
