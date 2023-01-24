@@ -20,6 +20,7 @@ let usersController = {
 }, 
     servicesProcess: (req, res) => {
         const resultValidation = validationResult(req)
+        let user = req.session.userLogged
 
         if(resultValidation.errors.length > 0){
           res.render('Users/servicesForm', {
@@ -32,7 +33,7 @@ let usersController = {
         db.turno.create({
             fecha_solicitud: Date.now(),
             fecha_turno: req.body.fecha_creacion,
-            usuario_id: 1,
+            usuario_id: user.id,
             local_id: req.body.localUsuario,
             servicio_id: req.body.servicioUsuario
         })
@@ -67,7 +68,7 @@ let usersController = {
             },
             oldData: req.body
         })
-      }
+      } 
         db.usuario.create({
             nombre: req.body.nombreUsuario,
             apellido: req.body.apellidoUsuario,

@@ -7,8 +7,6 @@ let validationsRegister = [
     body('emailUsuario')
     .notEmpty().withMessage('El campo Email no puede estar vacio').bail()
     .isEmail().withMessage('Debes escribir un mail valido'),
-    body('localUsuario').notEmpty().withMessage('Debe seleccionar un local'),
-    body('servicioUsuario').notEmpty().withMessage('Debe seleccionar un servicio'),
     body('passwordUsuario').notEmpty().withMessage('El campo Contraseña no puede estar vacio'),
     body('imageProfile').custom((value, {req})=>{
         let file = req.file; 
